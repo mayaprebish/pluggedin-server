@@ -10,6 +10,10 @@ public class Artist {
     private Integer id;
     private String name;
     private String location;
+    private String genre;
+
+    // many venues
+    // one manager
 
     public Artist() {}
 }

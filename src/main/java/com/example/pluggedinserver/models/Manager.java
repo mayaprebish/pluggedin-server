@@ -3,6 +3,7 @@ package com.example.pluggedinserver.models;
 import javax.persistence.*;
 import java.util.List;
 
+// a type of pluggedin user who manages a list of artists, keeps track of tours, and can favorite venues
 @Entity
 @Table(name = "managers")
 public class Manager {
@@ -16,6 +17,11 @@ public class Manager {
 
     private List<Artist> artists;
     private List<Tour> tours;
-    private List<Booking> bookings;
     private List<Venue> venues;
+
+    // many artists (stored in profile)
+    // many tours (series of bookings)
+    // many 'favorited' venues
+
+    public Manager() {}
 }

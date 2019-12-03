@@ -2,6 +2,7 @@ package com.example.pluggedinserver.models;
 
 import javax.persistence.*;
 
+// a type of pluggedin user who owns a venue and can keep track of bookings on pluggedin
 @Entity
 @Table(name = "owners")
 public class Owner {
@@ -13,4 +14,7 @@ public class Owner {
     private String firstName;
     private String lastName;
     private Venue venue;
+    // many bookings
+
+    public Owner() {}
 }
