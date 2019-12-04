@@ -10,4 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TourController {
     @Autowired
     TourRepository repository;
+
+    // find and store tours by manager id
 }

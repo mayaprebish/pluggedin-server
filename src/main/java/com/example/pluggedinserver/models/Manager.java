@@ -15,8 +15,13 @@ public class Manager {
     private String firstName;
     private String lastName;
 
+    @OneToMany
     private List<Artist> artists;
+
+    @OneToMany
     private List<Tour> tours;
+
+    @OneToMany
     private List<Venue> venues;
 
     // many artists (stored in profile)

@@ -11,4 +11,5 @@ public class VenueController {
     @Autowired
     VenueRepository repository;
 
+    // find a manager's favorited venues, or find an owner's owned venue
 }

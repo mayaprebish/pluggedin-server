@@ -11,4 +11,6 @@ public class BookingController {
     @Autowired
     BookingRepository repository;
 
+    // find and store bookings by manager id or owner id
+
 }

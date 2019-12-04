@@ -15,9 +15,5 @@ public class ArtistController {
     @Autowired
     ArtistRepository repository;
 
-    @GetMapping("/api/artists")
-    public List<Artist> findAllArtists() {
-        return repository.findAllArtists();
-    }
-
+    // need to find and store artists by manager id
 }

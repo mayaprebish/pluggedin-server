@@ -18,4 +18,6 @@ public class UserController {
     ManagerRepository managerRepository;
     @Autowired
     OwnerRepository ownerRepository;
+
+    // find and add users
 }

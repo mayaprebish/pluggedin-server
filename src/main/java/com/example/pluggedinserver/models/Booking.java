@@ -1,5 +1,7 @@
 package com.example.pluggedinserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 // a booking represents one event with one artist at one venue, which is part of one tour
