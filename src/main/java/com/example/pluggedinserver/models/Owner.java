@@ -17,7 +17,7 @@ public class Owner {
     private Venue venue;
 
     // many bookings stored on profile
-    @OneToMany
+    @OneToMany(mappedBy = "owner")
     private List<Booking> bookings;
 
     public Owner() {}
