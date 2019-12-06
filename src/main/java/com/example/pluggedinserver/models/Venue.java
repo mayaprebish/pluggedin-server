@@ -1,5 +1,7 @@
 package com.example.pluggedinserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,8 +16,63 @@ public class Venue {
     private String location;
 
     // artists that have played at this venue
-    @ManyToMany
+    @ManyToMany(mappedBy = "venues")
     private List<Artist> artists;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public List<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(List<Artist> artists) {
+        this.artists = artists;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
+    @OneToOne(mappedBy = "venue")
+    private Owner owner;
+
+    @ManyToOne
+    @JsonIgnore
+    private Manager manager;
 
     public Venue(){}
 }
