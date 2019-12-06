@@ -4,6 +4,11 @@ import javax.persistence.*;
 import java.util.List;
 
 // a type of pluggedin user who manages a list of artists, keeps track of tours, and can favorite venues
+
+/**
+ * A Manager is a tour manager. A Manager's profile contains a list of artists they manage, a list of Tours, and a
+ * list of their 'favorited' venues.
+ */
 @Entity
 @Table(name = "managers")
 public class Manager implements User {

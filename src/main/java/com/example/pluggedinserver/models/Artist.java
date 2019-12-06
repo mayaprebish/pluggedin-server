@@ -5,6 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * An artist is a band or music creator with a name, a location and a genre. Tour managers have many artists listed
+ * on their profiles.
+ */
 @Entity
 @Table(name = "artists")
 public class Artist {

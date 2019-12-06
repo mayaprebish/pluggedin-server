@@ -5,7 +5,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
 
-// a booking represents one event with one artist at one venue, which is part of one tour
+
+/**
+ * A Booking represents an event at a Venue with an Artist. A Booking is part of a Tour, and a Venue Owner's profile
+ * contains a list of Bookings.
+ */
 @Entity
 @Table(name = "bookings")
 public class Booking {
