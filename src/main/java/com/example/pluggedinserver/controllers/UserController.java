@@ -2,6 +2,7 @@ package com.example.pluggedinserver.controllers;
 
 import com.example.pluggedinserver.models.Manager;
 import com.example.pluggedinserver.models.Owner;
+import com.example.pluggedinserver.models.User;
 import com.example.pluggedinserver.repositories.ManagerRepository;
 import com.example.pluggedinserver.repositories.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,18 @@ public class UserController {
     public Owner getOwnerById
             (@PathVariable("id") Integer id) {
         return ownerRepository.findOwnerById(id);
+    }
+
+    @GetMapping("/api/users/{username}/{password}")
+    public User getUserByCredentials
+            (@PathVariable String username,
+             @PathVariable String password) {
+        if (managerRepository.findManagerByCredentials(username, password) == null) {
+            return ownerRepository.findOwnerByCredentials(username, password);
+        }
+        else {
+            return managerRepository.findManagerByCredentials(username, password);
+        }
     }
 
     @GetMapping("/api/users/manager")

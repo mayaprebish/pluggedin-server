@@ -6,7 +6,7 @@ import java.util.List;
 // a type of pluggedin user who owns a venue and can keep track of bookings on pluggedin
 @Entity
 @Table(name = "owners")
-public class Owner {
+public class Owner implements User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
