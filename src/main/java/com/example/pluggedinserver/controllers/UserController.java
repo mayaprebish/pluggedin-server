@@ -4,6 +4,7 @@ import com.example.pluggedinserver.models.Manager;
 import com.example.pluggedinserver.models.Owner;
 import com.example.pluggedinserver.models.User;
 import com.example.pluggedinserver.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 public class UserController {
+
+    @Autowired
     UserService service;
 
     @GetMapping("/api/users/managers")
