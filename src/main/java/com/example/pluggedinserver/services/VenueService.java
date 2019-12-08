@@ -15,9 +15,9 @@ public class VenueService {
     VenueRepository repository;
 
 
-    public String getAllVenues() {
+    public String getAllVenues(String searchPhrase) {
 
-        final String uri = "https://api.eventful.com/json/venues/search?app_key=4TTVttfmr3tXFDJr&l=boston";
+        final String uri = "https://api.eventful.com/json/venues/search?app_key=4TTVttfmr3tXFDJr&l=boston" + "&keywords=" + searchPhrase;
 
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
