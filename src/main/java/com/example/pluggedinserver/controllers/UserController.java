@@ -16,6 +16,7 @@ public class UserController {
     @Autowired
     UserService service;
 
+
     @GetMapping("/api/users/managers")
     public List<Manager> getAllManagers() {
         return service.getAllManagers();
@@ -28,11 +29,11 @@ public class UserController {
 
     @PostMapping("/api/user")
     public User registerNewUser
-            (@RequestBody String userType,
-             @RequestBody String username,
-             @RequestBody String password,
-             @RequestBody String firstName,
-             @RequestBody String lastName) {
+            (@RequestParam String userType,
+             @RequestParam String username,
+             @RequestParam String password,
+             @RequestParam String firstName,
+             @RequestParam String lastName) {
         if (userType.equals("Venue Owner")) {
             Owner owner = new Owner(username, password, firstName, lastName);
             return service.createOwnerUser(owner);
@@ -84,15 +85,15 @@ public class UserController {
 
     @GetMapping("/api/users/manager")
     public Manager getManagerByCredentials
-            (@RequestBody String username,
+            (@RequestParam String username,
              @RequestBody String password) {
         return service.getManagerByCredentials(username, password);
     }
 
     @GetMapping("/api/users/owner")
     public Owner getOwnerByCredentials
-            (@RequestBody String username,
-             @RequestBody String password) {
+            (@RequestParam String username,
+             @RequestParam String password) {
         return service.getOwnerByCredentials(username, password);
     }
 }
