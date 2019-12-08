@@ -2,6 +2,7 @@ package com.example.pluggedinserver.controllers;
 
 import com.example.pluggedinserver.models.Artist;
 import com.example.pluggedinserver.repositories.ArtistRepository;
+import com.example.pluggedinserver.services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,6 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 public class ArtistController {
-    @Autowired
-    ArtistRepository repository;
+    ArtistService service;
 
-    // need to find and store artists by manager id
 }

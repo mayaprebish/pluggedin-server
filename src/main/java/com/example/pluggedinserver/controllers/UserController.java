@@ -5,6 +5,7 @@ import com.example.pluggedinserver.models.Owner;
 import com.example.pluggedinserver.models.User;
 import com.example.pluggedinserver.repositories.ManagerRepository;
 import com.example.pluggedinserver.repositories.OwnerRepository;
+import com.example.pluggedinserver.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,70 +14,60 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 public class UserController {
-    @Autowired
-    ManagerRepository managerRepository;
-    @Autowired
-    OwnerRepository ownerRepository;
+    UserService service;
 
     @GetMapping("/api/users/managers")
     public List<Manager> getAllManagers() {
-        return managerRepository.findAllManagers();
+        return service.getAllManagers();
     }
 
     @GetMapping("/api/users/owners")
     public List<Owner> getAllOwners() {
-        return ownerRepository.findAllOwners();
+        return service.getAllOwners();
     }
 
     @PostMapping("/api/users/managers")
     public List<Manager> createManagerUser
             (@RequestBody Manager manager) {
-        managerRepository.save(manager);
-        return managerRepository.findAllManagers();
+        return service.createManagerUser(manager);
     }
 
     @PostMapping("/api/users/owners")
     public List<Owner> createOwnerUser
             (@RequestBody Owner owner) {
-        ownerRepository.save(owner);
-        return ownerRepository.findAllOwners();
+        return service.createOwnerUser(owner);
     }
 
     @GetMapping("/api/users/managers/{id}")
     public Manager getManagerById
             (@PathVariable("id") Integer id) {
-        return managerRepository.findManagerById(id);
+        return service.getManagerById(id);
     }
 
     @GetMapping("/api/users/owners/{id}")
     public Owner getOwnerById
             (@PathVariable("id") Integer id) {
-        return ownerRepository.findOwnerById(id);
+        return service.getOwnerById(id);
     }
 
     @GetMapping("/api/users/{username}/{password}")
     public User getUserByCredentials
             (@PathVariable String username,
              @PathVariable String password) {
-        if (managerRepository.findManagerByCredentials(username, password) == null) {
-            return ownerRepository.findOwnerByCredentials(username, password);
-        }
-        else {
-            return managerRepository.findManagerByCredentials(username, password);
-        }
+        return service.getUserByCredentials(username, password);
     }
 
     @GetMapping("/api/users/manager")
     public Manager getManagerByCredentials
             (@RequestBody String username,
              @RequestBody String password) {
-        return managerRepository.findManagerByCredentials(username, password);
+        return service.getManagerByCredentials(username, password);
     }
 
     @GetMapping("/api/users/owner")
     public Owner getOwnerByCredentials
             (@RequestBody String username,
              @RequestBody String password) {
-        return ownerRepository.findOwnerByCredentials(username, password);
+        return service.getOwnerByCredentials(username, password);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.pluggedinserver.controllers;
 
 import com.example.pluggedinserver.repositories.BookingRepository;
+import com.example.pluggedinserver.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,9 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 public class BookingController {
-    @Autowired
-    BookingRepository repository;
 
-    // find and store bookings by manager id or owner id
+    BookingService service;
 
 }
