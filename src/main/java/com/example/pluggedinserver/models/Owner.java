@@ -79,6 +79,10 @@ public class Owner implements User {
     @OneToMany(mappedBy = "owner")
     private List<Booking> bookings;
 
+    public Owner() {
+
+    }
+
     public Owner(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
