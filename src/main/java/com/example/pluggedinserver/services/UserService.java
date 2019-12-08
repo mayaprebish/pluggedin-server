@@ -30,16 +30,16 @@ public class UserService {
         return ownerRepository.findAllOwners();
     }
 
-    public List<Manager> createManagerUser
+    public Manager createManagerUser
             (Manager manager) {
         managerRepository.save(manager);
-        return managerRepository.findAllManagers();
+        return manager;
     }
 
-    public List<Owner> createOwnerUser
+    public Owner createOwnerUser
             (Owner owner) {
         ownerRepository.save(owner);
-        return ownerRepository.findAllOwners();
+        return owner;
     }
 
     public Manager getManagerById

@@ -97,5 +97,10 @@ public class Manager implements User {
     // many tours (series of bookings)
     // many 'favorited' venues
 
-    public Manager() {}
+    public Manager(String username, String password, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }
