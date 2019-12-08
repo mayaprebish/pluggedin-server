@@ -12,9 +12,15 @@ public class VenueController {
     @Autowired
     VenueService service;
 
-    @GetMapping("/api/venues/{searchPhrase}")
+    @GetMapping("/api/venues/search/{searchPhrase}")
     public String getAllVenues(@PathVariable("searchPhrase") String searchPhrase) {
 
         return service.getAllVenues(searchPhrase);
+    }
+
+
+    @GetMapping("/api/venues/{vid}")
+    public String getVenue(@PathVariable("vid") String vid) {
+        return service.getVenue(vid);
     }
 }

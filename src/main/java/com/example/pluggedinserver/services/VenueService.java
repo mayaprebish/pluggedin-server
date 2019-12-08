@@ -13,16 +13,26 @@ public class VenueService {
 
     @Autowired
     VenueRepository repository;
+    RestTemplate restTemplate = new RestTemplate();
 
 
     public String getAllVenues(String searchPhrase) {
 
-        final String uri = "https://api.eventful.com/json/venues/search?app_key=4TTVttfmr3tXFDJr&l=boston" + "&keywords=" + searchPhrase;
+        final String uri = "https://api.eventful.com/json/venues/search?app_key=4TTVttfmr3tXFDJr" + "&keywords=" + searchPhrase;
 
-        RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
 
         return result;
 
+    }
+
+
+    public String getVenue(String venueId) {
+
+        final String uri = "http://api.eventful.com/json/venues/get?app_key=4TTVttfmr3tXFDJr&id=" + venueId;
+
+        String result = restTemplate.getForObject(uri, String.class);
+
+        return result;
     }
 }
