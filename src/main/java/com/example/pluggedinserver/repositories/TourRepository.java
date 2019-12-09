@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface TourRepository extends CrudRepository<Tour, Integer> {
 
-    @Query("select tour from Tout tour where tour.id=:tid")
+    @Query("select tour from Tour tour where tour.id=:tid")
     public Tour findTourById(@Param("tid") Integer id);
 
     @Query("select tour from Tour tour where tour.manager.id=:mid")

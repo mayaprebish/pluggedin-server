@@ -12,6 +12,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 public class TourController {
 
+    @Autowired
     TourService service;
 
     @PostMapping("api/users/managers/{mid}/tours")
