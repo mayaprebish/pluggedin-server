@@ -35,10 +35,10 @@ public class UserController {
              @RequestParam String firstName,
              @RequestParam String lastName) {
         if (userType.equals("Venue Owner")) {
-            Owner owner = new Owner(username, password, firstName, lastName);
+            Owner owner = new Owner(username, password, firstName, lastName, userType);
             return service.createOwnerUser(owner);
         } else if (userType.equals("Tour Manager")) {
-            Manager manager = new Manager(username, password, firstName, lastName);
+            Manager manager = new Manager(username, password, firstName, lastName, userType);
             return service.createManagerUser(manager);
         } else {
             return null;
@@ -69,11 +69,16 @@ public class UserController {
         return service.getOwnerById(id);
     }
 
-    @GetMapping("/api/users/{username}/{password}/{userType}")
+    @GetMapping("/api/users/{username}/{password}")
     public User getUserByCredentials
             (@PathVariable("username") String username,
              @PathVariable("password") String password,
              @PathVariable("userType") String userType) {
+
+        System.out.println("IN LOGIN");
+        System.out.println(username);
+        System.out.println(password);
+        System.out.println(userType);
         if (userType.equals("Venue Owner")) {
             return service.getOwnerByCredentials(username, password);
         } else if (userType.equals("Tour Manager")) {

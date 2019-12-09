@@ -19,6 +19,7 @@ public class Manager implements User {
     private String password;
     private String firstName;
     private String lastName;
+    private String userType;
 
     @OneToMany(mappedBy = "manager")
     private List<Artist> artists;
@@ -97,10 +98,23 @@ public class Manager implements User {
     // many tours (series of bookings)
     // many 'favorited' venues
 
-    public Manager(String username, String password, String firstName, String lastName) {
+    public Manager() {
+
+    }
+
+    public Manager(String username, String password, String firstName, String lastName, String userType) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.userType = userType;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

@@ -14,6 +14,7 @@ public class Owner implements User {
     private String password;
     private String firstName;
     private String lastName;
+    private String userType;
 
     public Integer getId() {
         return id;
@@ -83,10 +84,19 @@ public class Owner implements User {
 
     }
 
-    public Owner(String username, String password, String firstName, String lastName) {
+    public Owner(String username, String password, String firstName, String lastName, String userType) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.userType = userType;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }
