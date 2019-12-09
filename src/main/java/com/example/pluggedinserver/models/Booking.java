@@ -21,6 +21,18 @@ public class Booking {
     @JsonIgnore
     private Artist artist;
 
+    @ManyToOne
+    @JsonIgnore
+    private Venue venue;
+
+    @ManyToOne
+    @JsonIgnore
+    private Owner owner;
+
+    @ManyToOne
+    @JsonIgnore
+    private Tour tour;
+
     public Integer getId() {
         return id;
     }
@@ -61,17 +73,7 @@ public class Booking {
         this.tour = tour;
     }
 
-    @ManyToOne
-    @JsonIgnore
-    private Venue venue;
 
-    @ManyToOne
-    @JsonIgnore
-    private Owner owner;
-
-    @ManyToOne
-    @JsonIgnore
-    private Tour tour;
 
     public Booking() {}
 }
