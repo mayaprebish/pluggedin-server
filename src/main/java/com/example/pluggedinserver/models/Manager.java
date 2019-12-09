@@ -1,6 +1,7 @@
 package com.example.pluggedinserver.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 // a type of pluggedin user who manages a list of artists, keeps track of tours, and can favorite venues
@@ -98,16 +99,17 @@ public class Manager implements User {
     // many tours (series of bookings)
     // many 'favorited' venues
 
-    public Manager() {
+    public Manager() {}
 
-    }
-
-    public Manager(String username, String password, String firstName, String lastName, String userType) {
+    public Manager(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userType = userType;
+        this.userType = "Tour Manager";
+        this.artists = new ArrayList<>();
+        this.tours = new ArrayList<>();
+        this.venues = new ArrayList<>();
     }
 
     public String getUserType() {

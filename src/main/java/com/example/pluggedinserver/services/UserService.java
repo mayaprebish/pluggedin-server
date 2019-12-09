@@ -33,6 +33,7 @@ public class UserService {
     public Manager createManagerUser
             (Manager manager) {
         managerRepository.save(manager);
+        System.out.println(manager.getUsername());
         return manager;
     }
 

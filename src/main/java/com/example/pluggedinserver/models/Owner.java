@@ -80,16 +80,14 @@ public class Owner implements User {
     @OneToMany(mappedBy = "owner")
     private List<Booking> bookings;
 
-    public Owner() {
+    public Owner() { }
 
-    }
-
-    public Owner(String username, String password, String firstName, String lastName, String userType) {
+    public Owner(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userType = userType;
+        this.userType = "Venue Owner";
     }
 
     public String getUserType() {
