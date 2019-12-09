@@ -29,11 +29,11 @@ public class UserController {
 
     @PostMapping("/api/user")
     public User registerNewUser
-            (@RequestParam String userType,
-             @RequestParam String username,
+            (@RequestParam String username,
              @RequestParam String password,
              @RequestParam String firstName,
-             @RequestParam String lastName) {
+             @RequestParam String lastName,
+             @RequestParam String userType) {
         if (userType.equals("Venue Owner")) {
             Owner owner = new Owner(username, password, firstName, lastName, userType);
             return service.createOwnerUser(owner);
@@ -69,7 +69,7 @@ public class UserController {
         return service.getOwnerById(id);
     }
 
-    @GetMapping("/api/users/{username}/{password}")
+    @GetMapping("/api/users/{username}/{password}/{userType}")
     public User getUserByCredentials
             (@PathVariable("username") String username,
              @PathVariable("password") String password,
