@@ -1,6 +1,7 @@
 package com.example.pluggedinserver.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 // a type of pluggedin user who owns a venue and can keep track of bookings on pluggedin
@@ -88,6 +89,7 @@ public class Owner implements User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userType = "Venue Owner";
+        this.bookings = new ArrayList<>();
     }
 
     public String getUserType() {

@@ -28,13 +28,16 @@ public class UserController {
     @PostMapping("/api/users/manager")
     public Manager registerNewManager
             (@RequestBody Manager manager) {
-        return service.createManagerUser(manager);
+        Manager m = new Manager(manager.getUsername(), manager.getPassword(), manager.getFirstName(),
+                manager.getLastName());
+        return service.createManagerUser(m);
     }
 
     @PostMapping("/api/users/owner")
     public Owner registerNewOwner
             (@RequestBody Owner owner) {
-        return service.createOwnerUser(owner);
+        Owner o = new Owner(owner.getUsername(), owner.getPassword(), owner.getFirstName(), owner.getLastName());
+        return service.createOwnerUser(o);
     }
 
     @GetMapping("/api/users/managers/{id}")
