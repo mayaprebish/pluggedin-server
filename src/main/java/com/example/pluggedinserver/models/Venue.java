@@ -67,7 +67,8 @@ public class Venue {
         this.manager = manager;
     }
 
-    @OneToOne(mappedBy = "venue")
+    @ManyToOne
+    @JsonIgnore
     private Owner owner;
 
     @ManyToOne

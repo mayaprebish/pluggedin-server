@@ -57,12 +57,12 @@ public class Owner implements User {
         this.lastName = lastName;
     }
 
-    public Venue getVenue() {
-        return venue;
+    public List<Venue> getVenues() {
+        return venues;
     }
 
-    public void setVenue(Venue venue) {
-        this.venue = venue;
+    public void setVenues(List<Venue> venues) {
+        this.venues = venues;
     }
 
     public List<Booking> getBookings() {
@@ -73,9 +73,8 @@ public class Owner implements User {
         this.bookings = bookings;
     }
 
-    @OneToOne
-    @JoinColumn(name = "venue_id", referencedColumnName = "id")
-    private Venue venue;
+    @OneToMany(mappedBy = "owner")
+    private List<Venue> venues;
 
     // many bookings stored on profile
     @OneToMany(mappedBy = "owner")
