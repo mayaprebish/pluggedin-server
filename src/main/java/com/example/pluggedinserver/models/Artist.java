@@ -19,6 +19,10 @@ public class Artist {
     private String location;
     private String genre;
 
+
+    @OneToMany(mappedBy = "venue")
+    private List<Booking> bookings;
+
     // this artist's manager
     @ManyToOne
     @JsonIgnore
@@ -85,5 +89,13 @@ public class Artist {
     // one manager
 
     public Artist() {
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

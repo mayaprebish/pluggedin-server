@@ -15,6 +15,9 @@ public class Venue {
     private String name;
     private String location;
 
+    @OneToMany(mappedBy = "venue")
+    private List<Booking> bookings;
+
     // artists that have played at this venue
     @ManyToMany(mappedBy = "venues")
     private List<Artist> artists;
@@ -76,4 +79,12 @@ public class Venue {
     private Manager manager;
 
     public Venue(){}
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
 }
