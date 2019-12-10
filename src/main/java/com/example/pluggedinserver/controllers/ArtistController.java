@@ -35,7 +35,7 @@ public class ArtistController {
         return service.findArtistById(aid);
     }
 
-    @PutMapping("api/artists/{tid}")
+    @PutMapping("api/artists/{aid}")
     public Artist updateTour(@PathVariable("aid") Integer aid, @RequestBody Artist artist) {
         return service.updateArtist(aid, artist);
     }
