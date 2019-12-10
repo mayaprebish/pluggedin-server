@@ -42,7 +42,7 @@ public class BookingController {
     }
 
     @GetMapping("api/venues/{vid}/bookings")
-    public List<Booking> findAllBookingsForVeenue(@PathVariable("vid") Integer vid) {
+    public List<Booking> findAllBookingsForVenue(@PathVariable("vid") Integer vid) {
         return service.findAllBookingsForVenue(vid);
     }
 
