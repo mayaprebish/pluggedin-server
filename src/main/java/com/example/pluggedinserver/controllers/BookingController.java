@@ -72,7 +72,7 @@ public class BookingController {
         return service.updateBooking(bid, booking);
     }
 
-    @DeleteMapping("api/artists/{aid}")
+    @DeleteMapping("api/bookings/{bid}")
     public List<Booking> deleteBooking(@PathVariable("bid") Integer bid) {
         return service.deleteBooking(bid);
     }
