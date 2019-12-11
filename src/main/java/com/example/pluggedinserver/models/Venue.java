@@ -11,7 +11,6 @@ import java.util.List;
 @Table(name = "venues")
 public class Venue {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String location;
@@ -81,7 +80,8 @@ public class Venue {
 
     public Venue(){}
 
-    public Venue(String name, String location, Owner owner) {
+    public Venue(Integer id, String name, String location, Owner owner) {
+        this.id = id;
         this.name = name;
         this.location = location;
         this.owner = owner;
