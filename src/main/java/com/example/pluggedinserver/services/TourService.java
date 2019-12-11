@@ -41,6 +41,10 @@ public class TourService {
         return repository.findTourById(tid);
     }
 
+    public Tour findTourForManager(Integer mid, Integer tid) {
+        return repository.findTourForManager(mid, tid);
+    }
+
     public Tour updateTour(Integer tid, Tour tour) {
         Tour curTour = this.findTourById(tid);
 

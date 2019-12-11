@@ -73,7 +73,12 @@ public class Booking {
         this.tour = tour;
     }
 
-
-
     public Booking() {}
+
+    public Booking(Artist artist, Venue venue, Tour tour, Owner owner) {
+        this.artist = artist;
+        this.venue = venue;
+        this.tour = tour;
+        this.owner = owner;
+    }
 }

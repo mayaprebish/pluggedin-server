@@ -3,6 +3,7 @@ package com.example.pluggedinserver.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 // a venue is an object with a name and a location
@@ -79,6 +80,14 @@ public class Venue {
     private Manager manager;
 
     public Venue(){}
+
+    public Venue(String name, String location, Owner owner) {
+        this.name = name;
+        this.location = location;
+        this.owner = owner;
+        this.bookings = new ArrayList<>();
+        this.artists = new ArrayList<>();
+    }
 
     public List<Booking> getBookings() {
         return bookings;

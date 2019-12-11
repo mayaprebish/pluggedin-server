@@ -3,6 +3,7 @@ package com.example.pluggedinserver.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 // a tour is a series of bookings
@@ -53,8 +54,12 @@ public class Tour {
     public void setManager(Manager manager) {
         this.manager = manager;
     }
-// many bookings
-    // one manager
 
     public Tour() {}
+
+    public Tour(String title, Manager manager) {
+        this.title = title;
+        this.manager = manager;
+        this.bookings = new ArrayList<>();
+    }
 }

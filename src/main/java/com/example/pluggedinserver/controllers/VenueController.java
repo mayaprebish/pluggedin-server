@@ -14,10 +14,8 @@ public class VenueController {
 
     @GetMapping("/api/venues/search/{searchPhrase}")
     public String getAllVenues(@PathVariable("searchPhrase") String searchPhrase) {
-
         return service.getAllVenues(searchPhrase);
     }
-
 
     @GetMapping("/api/venues/{vid}")
     public String getVenue(@PathVariable("vid") String vid) {

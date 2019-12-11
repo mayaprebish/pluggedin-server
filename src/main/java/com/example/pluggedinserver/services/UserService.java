@@ -1,10 +1,7 @@
 package com.example.pluggedinserver.services;
 
-import com.example.pluggedinserver.models.Manager;
-import com.example.pluggedinserver.models.Owner;
-import com.example.pluggedinserver.models.User;
-import com.example.pluggedinserver.repositories.ManagerRepository;
-import com.example.pluggedinserver.repositories.OwnerRepository;
+import com.example.pluggedinserver.models.*;
+import com.example.pluggedinserver.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +14,55 @@ public class UserService {
     ManagerRepository managerRepository;
     @Autowired
     OwnerRepository ownerRepository;
+    @Autowired
+    VenueRepository venueRepository;
+    @Autowired
+    TourRepository tourRepository;
+    @Autowired
+    BookingRepository bookingRepository;
+
+    TourService tourService;
 
     public UserService() {
+    }
 
+    public List<Venue> createOwnerVenue(Integer ownerId, Venue venue) {
+        Owner owner = this.getOwnerById(ownerId);
+        Venue v = new Venue(venue.getName(), venue.getLocation(), owner);
+        venueRepository.save(v);
+        return venueRepository.findAllByOwner(ownerId);
+    }
+
+    public List<Venue> deleteOwnerVenue(Integer ownerId, Integer venueId) {
+        venueRepository.deleteVenue(venueId, ownerId);
+        return venueRepository.findAllByOwner(ownerId);
+    }
+
+    public List<Venue> updateOwnerVenue(Integer ownerId, Integer venueId, Venue venue) {
+        Owner owner = this.getOwnerById(ownerId);
+        venueRepository.deleteVenue(venueId, ownerId);
+        venueRepository.save(venue);
+        return venueRepository.findAllByOwner(ownerId);
+    }
+
+    public List<Tour> createManagerTour(Integer managerId, Tour tour) {
+        Manager manager = this.getManagerById(managerId);
+        Tour t = new Tour(tour.getTitle(), manager);
+        tourRepository.save(t);
+        return tourRepository.findAllToursForManager(managerId);
+    }
+
+    public List<Tour> createBooking(Integer managerId, Integer tourId, Booking booking) {
+        Tour tour = tourService.findTourForManager(managerId, tourId);
+        Venue venue = booking.getVenue();
+        Owner owner = null;
+        List<Venue> venues = venueRepository.findAllVenues();
+        if (venues.size() > 0) {
+            owner = venueRepository.findVenueById(venue.getId()).getOwner();
+        }
+        Booking b = new Booking(booking.getArtist(), booking.getVenue(), tour, owner);
+        bookingRepository.save(b);
+        return tourRepository.findAllToursForManager(managerId);
     }
 
     public List<Manager> getAllManagers() {
@@ -57,8 +100,7 @@ public class UserService {
              String password) {
         if (managerRepository.findManagerByCredentials(username, password) == null) {
             return ownerRepository.findOwnerByCredentials(username, password);
-        }
-        else {
+        } else {
             return managerRepository.findManagerByCredentials(username, password);
         }
     }

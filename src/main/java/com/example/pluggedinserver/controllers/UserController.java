@@ -1,8 +1,6 @@
 package com.example.pluggedinserver.controllers;
 
-import com.example.pluggedinserver.models.Manager;
-import com.example.pluggedinserver.models.Owner;
-import com.example.pluggedinserver.models.User;
+import com.example.pluggedinserver.models.*;
 import com.example.pluggedinserver.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -78,4 +76,42 @@ public class UserController {
              @RequestParam String password) {
         return service.getOwnerByCredentials(username, password);
     }
+
+    @PostMapping("/api/users/owners/{ownerId}/venue")
+    public List<Venue> createVenue
+            (@PathVariable("ownerId") Integer ownerId,
+             @RequestBody Venue venue) {
+        return service.createOwnerVenue(ownerId, venue);
+    }
+
+    @DeleteMapping("/api/users/owners/{ownerId}/venues/{venueId}")
+    public List<Venue> deleteVenue
+            (@PathVariable("ownerId") Integer ownerId,
+             @PathVariable("venueId") Integer venueId) {
+        return service.deleteOwnerVenue(ownerId, venueId);
+    }
+
+    @PutMapping("/api/users/owners/{ownerId}/venues/{venueId}")
+    public List<Venue> updateVenue
+            (@PathVariable("ownerId") Integer ownerId,
+             @PathVariable("venueId") Integer venueId,
+             @RequestBody Venue venue) {
+        return service.updateOwnerVenue(ownerId, venueId, venue);
+    }
+
+    @PostMapping("/api/users/managers/{managerId}/tour")
+    public List<Tour> createManagerTour
+            (@PathVariable("managerId") Integer managerId,
+             @RequestBody Tour tour) {
+        return service.createManagerTour(managerId, tour);
+    }
+
+    @PostMapping("/api/users/managers/{managerId}/tours/{tourId}/booking")
+    public List<Tour> createBooking
+            (@PathVariable("managerId") Integer managerId,
+             @PathVariable("tourId") Integer tourId,
+             @RequestBody Booking booking) {
+        return service.createBooking(managerId, tourId, booking);
+    }
+
 }
