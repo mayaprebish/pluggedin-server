@@ -36,13 +36,13 @@ public class BookingController {
     }
 
     @PostMapping("api/venues/{vid}/bookings")
-    public List<Booking> createBookingForVenue(@PathVariable("vid") Integer vid,
+    public List<Booking> createBookingForVenue(@PathVariable("vid") String vid,
                                               @RequestBody Booking booking) {
         return service.createBookingForVenue(vid, booking);
     }
 
     @GetMapping("api/venues/{vid}/bookings")
-    public List<Booking> findAllBookingsForVenue(@PathVariable("vid") Integer vid) {
+    public List<Booking> findAllBookingsForVenue(@PathVariable("vid") String vid) {
         return service.findAllBookingsForVenue(vid);
     }
 

@@ -40,12 +40,12 @@ public class UserService {
         return venueRepository.findAllByOwner(ownerId);
     }
 
-    public List<Venue> deleteOwnerVenue(Integer ownerId, Integer venueId) {
+    public List<Venue> deleteOwnerVenue(Integer ownerId, String venueId) {
         venueRepository.deleteVenue(venueId, ownerId);
         return venueRepository.findAllByOwner(ownerId);
     }
 
-    public List<Venue> updateOwnerVenue(Integer ownerId, Integer venueId, Venue venue) {
+    public List<Venue> updateOwnerVenue(Integer ownerId, String venueId, Venue venue) {
         Owner owner = this.getOwnerById(ownerId);
         venueRepository.deleteVenue(venueId, ownerId);
         venueRepository.save(venue);

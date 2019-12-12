@@ -16,15 +16,15 @@ public interface BookingRepository extends CrudRepository<Booking, Integer> {
     public List<Booking> findAllBookings();
 
     @Query("select booking from Booking booking where booking.owner.id=:oid")
-    public List<Booking> findAllBookingsForOwner(@Param("oid") Integer id);
+    public List<Booking> findAllBookingsForOwner(@Param("oid") Integer oid);
 
     @Query("select booking from Booking booking where booking.tour.id=:tid")
-    public List<Booking> findAllBookingsForTour(@Param("tid") Integer id);
+    public List<Booking> findAllBookingsForTour(@Param("tid") Integer tid);
 
     @Query("select booking from Booking booking where booking.venue.id=:vid")
-    public List<Booking> findAllBookingsForVenue(@Param("vid") Integer id);
+    public List<Booking> findAllBookingsForVenue(@Param("vid") String vid);
 
     @Query("select booking from Booking booking where booking.artist.id=:aid")
-    public List<Booking> findAllBookingsForArtist(@Param("aid") Integer id);
+    public List<Booking> findAllBookingsForArtist(@Param("aid") Integer aid);
 
 }
