@@ -6,7 +6,8 @@ import javax.persistence.*;
 class ArtistVenueEntity {
 
     @Id
-    Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer id;
 
     @ManyToOne
     @JoinColumn(name = "artist_id")
