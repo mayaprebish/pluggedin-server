@@ -1,5 +1,7 @@
 package com.example.pluggedinserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,10 +13,12 @@ class ArtistVenueEntity {
     Integer id;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "artist_id")
     Artist artist;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "venue_id")
     Venue venue;
 
