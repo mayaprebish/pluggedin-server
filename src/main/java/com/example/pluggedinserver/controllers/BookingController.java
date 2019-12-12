@@ -13,17 +13,6 @@ public class BookingController {
     @Autowired
     BookingService service;
 
-    @PostMapping("api/users/owners/{oid}/bookings")
-    public List<Booking> createBookingForOwner(@PathVariable("oid") Integer oid,
-                                               @RequestBody Booking booking) {
-        return service.createBookingForOwner(oid, booking);
-    }
-
-    @GetMapping("api/users/owners/{oid}/bookings")
-    public List<Booking> findAllBookingsForOwner(@PathVariable("oid") Integer oid) {
-        return service.findAllBookingsForOwner(oid);
-    }
-
     @PostMapping("api/tours/{tid}/bookings")
     public List<Booking> createBookingForTour(@PathVariable("tid") Integer tid,
                                               @RequestBody Booking booking) {
@@ -44,17 +33,6 @@ public class BookingController {
     @GetMapping("api/venues/{vid}/bookings")
     public List<Booking> findAllBookingsForVenue(@PathVariable("vid") Integer vid) {
         return service.findAllBookingsForVenue(vid);
-    }
-
-    @PostMapping("api/artists/{aid}/bookings")
-    public List<Booking> createBookingForArtist(@PathVariable("aid") Integer aid,
-                                               @RequestBody Booking booking) {
-        return service.createBookingForArtist(aid, booking);
-    }
-
-    @GetMapping("api/artists/{aid}/bookings")
-    public List<Booking> findAllBookingsForArtist(@PathVariable("aid") Integer aid) {
-        return service.findAllBookingsForArtist(aid);
     }
 
     @GetMapping("api/bookings")

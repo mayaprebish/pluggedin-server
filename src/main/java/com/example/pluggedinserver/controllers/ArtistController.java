@@ -34,9 +34,4 @@ public class ArtistController {
         return service.updateArtist(aid, artist);
     }
 
-    @DeleteMapping("api/artists/{aid}")
-    public List<Artist> deleteArtist(@PathVariable("aid") Integer aid) {
-        return service.deleteArtist(aid);
-    }
-
 }

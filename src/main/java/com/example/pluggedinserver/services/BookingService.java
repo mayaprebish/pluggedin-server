@@ -25,20 +25,6 @@ public class BookingService {
     @Autowired
     ArtistRepository artistRepository;
 
-    public List<Booking> createBookingForOwner(Integer oid, Booking booking) {
-
-        Owner owner = ownerRepository.findOwnerById(oid);
-        List<Booking> originalBookings = owner.getBookings();
-        originalBookings.add(booking);
-        owner.setBookings(originalBookings);
-        ownerRepository.save(owner);
-
-        Owner updatedOwner = ownerRepository.findOwnerById(oid);
-        booking.setOwner(updatedOwner);
-        repository.save(booking);
-        return repository.findAllBookingsForOwner(oid);
-    }
-
     public List<Booking> findAllBookingsForOwner(Integer oid) {
         return repository.findAllBookingsForOwner(oid);
     }
@@ -77,24 +63,6 @@ public class BookingService {
 
     public List<Booking> findAllBookingsForVenue(Integer vid) {
         return repository.findAllBookingsForVenue(vid);
-    }
-
-    public List<Booking> createBookingForArtist(Integer aid, Booking booking) {
-
-        Artist artist = artistRepository.findArtistById(aid);
-        List<Booking> originalBookings = artist.getBookings();
-        originalBookings.add(booking);
-        artist.setBookings(originalBookings);
-        artistRepository.save(artist);
-
-        Artist updatedArtist = artistRepository.findArtistById(aid);
-        booking.setArtist(updatedArtist);
-        repository.save(booking);
-        return repository.findAllBookingsForArtist(aid);
-    }
-
-    public List<Booking> findAllBookingsForArtist(Integer aid) {
-        return repository.findAllBookingsForArtist(aid);
     }
 
     public List<Booking> findAllBookings() {

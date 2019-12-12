@@ -3,6 +3,7 @@ package com.example.pluggedinserver.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,10 +20,6 @@ public class Artist {
     private String location;
     private String genre;
 
-    @OneToMany(mappedBy = "venue")
-    private List<Booking> bookings;
-
-    // this artist's manager
     @ManyToOne
     @JsonIgnore
     private Manager manager;
@@ -84,17 +81,13 @@ public class Artist {
     )
     private List<Venue> venues;
 
-    // many venues
-    // one manager
-
-    public Artist() {
+    public Artist(String name, String location, String genre, Manager manager) {
+        this.name = name;
+        this.location = location;
+        this.genre = genre;
+        this.manager = manager;
+        this.venues = new ArrayList<>();
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
+    public Artist() {}
 }

@@ -81,10 +81,16 @@ public class UserController {
         return service.getOwnerByCredentials(username, password);
     }
 
-    @PostMapping("api/users/managers/{mid}/artists")
+    @PostMapping("api/users/managers/{mid}/artist")
     public Manager createArtistForManager(@PathVariable("mid") Integer mid,
                                                @RequestBody Artist artist) {
         return artistService.createArtistForManager(mid, artist);
+    }
+
+    @DeleteMapping("api/users/managers/{mid}/artists/{aid}")
+    public Manager deleteArtist(@PathVariable("mid") Integer mid,
+                                @PathVariable("aid") Integer aid) {
+        return artistService.deleteArtist(mid, aid);
     }
 
     @PostMapping("/api/users/owners/{ownerId}/venue")
@@ -109,19 +115,21 @@ public class UserController {
         return service.updateOwnerVenue(ownerId, venueId, venue);
     }
 
+    // need venue info
+    @PostMapping("/api/users/managers/{managerId}/tours/{tourId}/artists/{artistId}/booking")
+    public Manager createBooking
+            (@PathVariable("managerId") Integer managerId,
+             @PathVariable("tourId") Integer tourId,
+             @PathVariable("artistId") Integer artistId,
+             @RequestBody Booking booking) {
+        return service.createBooking(managerId, tourId, booking);
+    }
+
     @PostMapping("/api/users/managers/{managerId}/tour")
     public List<Tour> createManagerTour
             (@PathVariable("managerId") Integer managerId,
              @RequestBody Tour tour) {
         return service.createManagerTour(managerId, tour);
-    }
-
-    @PostMapping("/api/users/managers/{managerId}/tours/{tourId}/booking")
-    public List<Tour> createBooking
-            (@PathVariable("managerId") Integer managerId,
-             @PathVariable("tourId") Integer tourId,
-             @RequestBody Booking booking) {
-        return service.createBooking(managerId, tourId, booking);
     }
 
 }

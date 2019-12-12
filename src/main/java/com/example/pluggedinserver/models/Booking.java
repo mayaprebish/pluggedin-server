@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -16,6 +17,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Date date;
 
     @ManyToOne
     @JsonIgnore
@@ -32,6 +34,14 @@ public class Booking {
     @ManyToOne
     @JsonIgnore
     private Tour tour;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Integer getId() {
         return id;
@@ -75,10 +85,11 @@ public class Booking {
 
     public Booking() {}
 
-    public Booking(Artist artist, Venue venue, Tour tour, Owner owner) {
+    public Booking(Artist artist, Venue venue, Tour tour, Owner owner, Date date) {
         this.artist = artist;
         this.venue = venue;
         this.tour = tour;
         this.owner = owner;
+        this.date = date;
     }
 }

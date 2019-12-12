@@ -20,14 +20,16 @@ public class ArtistService {
 
     public Manager createArtistForManager(Integer mid, Artist artist) {
         Manager manager = managerRepository.findManagerById(mid);
-        List<Artist> originalArtists = manager.getArtists();
-        originalArtists.add(artist);
-        manager.setArtists(originalArtists);
-        managerRepository.save(manager);
 
-        Manager updatedManager = managerRepository.findManagerById(mid);
-        artist.setManager(updatedManager);
-        repository.save(artist);
+        Artist a = new Artist(artist.getName(), artist.getLocation(), artist.getGenre(), manager);
+        repository.save(a);
+
+        return managerRepository.findManagerById(mid);
+    }
+
+    public Manager deleteArtist(Integer mid, Integer aid) {
+        repository.deleteArtist(mid, aid);
+
         return managerRepository.findManagerById(mid);
     }
 

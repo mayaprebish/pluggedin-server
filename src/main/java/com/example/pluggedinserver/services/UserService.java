@@ -28,7 +28,7 @@ public class UserService {
 
     public Owner createOwnerVenue(Integer ownerId, Venue venue) {
         Owner owner = ownerRepository.findOwnerById(ownerId);
-        Venue v = new Venue(venue.getKey(), venue.getName(), venue.getLocation(), owner);
+        Venue v = new Venue(venue.getStringKey(), venue.getName(), venue.getLocation(), owner);
         venueRepository.save(v);
         return ownerRepository.findOwnerById(ownerId);
     }

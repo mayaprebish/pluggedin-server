@@ -13,9 +13,9 @@ public class Venue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String key;
     private String name;
     private String location;
+    private String stringKey;
 
     @OneToMany(mappedBy = "venue")
     private List<Booking> bookings;
@@ -72,12 +72,12 @@ public class Venue {
         this.manager = manager;
     }
 
-    public String getKey() {
-        return key;
+    public String getStringKey() {
+        return stringKey;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setStringKey(String stringKey) {
+        this.stringKey = stringKey;
     }
 
     @ManyToOne
@@ -90,8 +90,8 @@ public class Venue {
 
     public Venue(){}
 
-    public Venue(String key, String name, String location, Owner owner) {
-        this.key = key;
+    public Venue(String stringKey, String name, String location, Owner owner) {
+        this.stringKey = stringKey;
         this.name = name;
         this.location = location;
         this.owner = owner;
