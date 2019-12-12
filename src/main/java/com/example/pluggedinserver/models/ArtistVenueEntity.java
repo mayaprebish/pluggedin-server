@@ -3,6 +3,7 @@ package com.example.pluggedinserver.models;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "artist_venues")
 class ArtistVenueEntity {
 
     @Id
