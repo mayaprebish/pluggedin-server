@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "venues")
 public class Venue {
     @Id
-    private Integer id;
+    private String id;
     private String name;
     private String location;
 
@@ -22,11 +22,11 @@ public class Venue {
     @ManyToMany(mappedBy = "venues")
     private List<Artist> artists;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -80,7 +80,7 @@ public class Venue {
 
     public Venue(){}
 
-    public Venue(Integer id, String name, String location, Owner owner) {
+    public Venue(String id, String name, String location, Owner owner) {
         this.id = id;
         this.name = name;
         this.location = location;
