@@ -64,22 +64,18 @@ public class Artist {
         this.manager = manager;
     }
 
-    public List<Venue> getVenues() {
+    public List<ArtistVenueEntity> getVenues() {
         return venues;
     }
 
-    public void setVenues(List<Venue> venues) {
+    public void setVenues(List<ArtistVenueEntity> venues) {
         this.venues = venues;
     }
 
     // venues that this artist has played at
-    @ManyToMany
-    @JoinTable(
-            name = "artist_venue",
-            joinColumns = @JoinColumn(name = "artist_id"),
-            inverseJoinColumns = @JoinColumn(name = "venue_id")
-    )
-    private List<Venue> venues;
+    // represents many to many relationship
+    @OneToMany(mappedBy = "artist")
+    private List<ArtistVenueEntity> venues;
 
     public Artist(String name, String location, String genre, Manager manager) {
         this.name = name;

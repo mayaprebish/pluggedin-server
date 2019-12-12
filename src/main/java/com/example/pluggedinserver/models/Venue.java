@@ -21,8 +21,9 @@ public class Venue {
     private List<Booking> bookings;
 
     // artists that have played at this venue
-    @ManyToMany(mappedBy = "venues")
-    private List<Artist> artists;
+    // represents many to many relationship
+    @OneToMany(mappedBy = "venue")
+    private List<ArtistVenueEntity> artists;
 
     public Integer getId() {
         return id;
@@ -48,11 +49,11 @@ public class Venue {
         this.location = location;
     }
 
-    public List<Artist> getArtists() {
+    public List<ArtistVenueEntity> getArtists() {
         return artists;
     }
 
-    public void setArtists(List<Artist> artists) {
+    public void setArtists(List<ArtistVenueEntity> artists) {
         this.artists = artists;
     }
 
