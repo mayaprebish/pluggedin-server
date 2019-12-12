@@ -28,14 +28,8 @@ public class UserService {
 
     public Owner createOwnerVenue(Integer ownerId, Venue venue) {
         Owner owner = ownerRepository.findOwnerById(ownerId);
-        List<Venue> originalVenues = owner.getVenues();
-        originalVenues.add(venue);
-        owner.setVenues(originalVenues);
-        ownerRepository.save(owner);
-
-        Owner updatedOwner = ownerRepository.findOwnerById(ownerId);
-        venue.setOwner(updatedOwner);
-        venueRepository.save(venue);
+        Venue v = new Venue(venue.getId(), venue.getName(), venue.getLocation(), owner);
+        venueRepository.save(v);
         return ownerRepository.findOwnerById(ownerId);
     }
 
