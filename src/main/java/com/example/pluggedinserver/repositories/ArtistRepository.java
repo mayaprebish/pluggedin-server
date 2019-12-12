@@ -18,7 +18,7 @@ public interface ArtistRepository extends CrudRepository<Artist, Integer> {
     public List<Artist> findAllArtists();
 
     @Query("select artist from Artist artist where artist.id=:aid")
-    public Artist findArtistById(@Param("aid") Integer id);
+    public Artist findArtistById(@Param("aid") Integer aid);
 
     @Transactional
     @Modifying
