@@ -26,8 +26,7 @@ public class UserService {
     public UserService() {
     }
 
-    public List<Venue> createOwnerVenue(Integer ownerId, Venue venue) {
-
+    public Owner createOwnerVenue(Integer ownerId, Venue venue) {
         Owner owner = ownerRepository.findOwnerById(ownerId);
         List<Venue> originalVenues = owner.getVenues();
         originalVenues.add(venue);
@@ -37,7 +36,7 @@ public class UserService {
         Owner updatedOwner = ownerRepository.findOwnerById(ownerId);
         venue.setOwner(updatedOwner);
         venueRepository.save(venue);
-        return venueRepository.findAllByOwner(ownerId);
+        return ownerRepository.findOwnerById(ownerId);
     }
 
     public List<Venue> deleteOwnerVenue(Integer ownerId, String venueId) {

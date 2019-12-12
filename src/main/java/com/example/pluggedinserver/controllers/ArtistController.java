@@ -14,12 +14,6 @@ public class ArtistController {
     @Autowired
     ArtistService service;
 
-    @PostMapping("api/users/managers/{mid}/artists")
-    public List<Artist> createArtistForManager(@PathVariable("mid") Integer mid,
-                                           @RequestBody Artist artist) {
-        return service.createArtistForManager(mid, artist);
-    }
-
     @GetMapping("api/users/managers/{mid}/artists")
     public List<Artist> findAllArtistsForManager(@PathVariable("mid") Integer mid) {
         return service.findAllArtistsForManager(mid);

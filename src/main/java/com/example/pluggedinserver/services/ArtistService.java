@@ -18,8 +18,7 @@ public class ArtistService {
     @Autowired
     ManagerRepository managerRepository;
 
-    public List<Artist> createArtistForManager(Integer mid, Artist artist) {
-
+    public Manager createArtistForManager(Integer mid, Artist artist) {
         Manager manager = managerRepository.findManagerById(mid);
         List<Artist> originalArtists = manager.getArtists();
         originalArtists.add(artist);
@@ -29,8 +28,7 @@ public class ArtistService {
         Manager updatedManager = managerRepository.findManagerById(mid);
         artist.setManager(updatedManager);
         repository.save(artist);
-        return repository.findAllArtistsForManager(mid);
-
+        return managerRepository.findManagerById(mid);
     }
 
     public List<Artist> findAllArtistsForManager(Integer mid) {

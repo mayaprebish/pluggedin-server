@@ -1,6 +1,7 @@
 package com.example.pluggedinserver.controllers;
 
 import com.example.pluggedinserver.models.*;
+import com.example.pluggedinserver.services.ArtistService;
 import com.example.pluggedinserver.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService service;
+
+    @Autowired
+    ArtistService artistService;
 
     @GetMapping("/api/users/managers")
     public List<Manager> getAllManagers() {
@@ -77,8 +81,14 @@ public class UserController {
         return service.getOwnerByCredentials(username, password);
     }
 
+    @PostMapping("api/users/managers/{mid}/artists")
+    public Manager createArtistForManager(@PathVariable("mid") Integer mid,
+                                               @RequestBody Artist artist) {
+        return artistService.createArtistForManager(mid, artist);
+    }
+
     @PostMapping("/api/users/owners/{ownerId}/venue")
-    public List<Venue> createVenue
+    public Owner createVenue
             (@PathVariable("ownerId") Integer ownerId,
              @RequestBody Venue venue) {
         return service.createOwnerVenue(ownerId, venue);
