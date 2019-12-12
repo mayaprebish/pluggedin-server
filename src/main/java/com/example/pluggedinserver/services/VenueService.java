@@ -23,9 +23,7 @@ public class VenueService {
         final String uri = "https://api.eventful.com/json/venues/search?app_key=4TTVttfmr3tXFDJr" + "&keywords=" + searchPhrase;
         String result = restTemplate.getForObject(uri, String.class);
         return result;
-
     }
-
 
     public String getVenue(String venueId) {
         final String uri = "http://api.eventful.com/json/venues/get?app_key=4TTVttfmr3tXFDJr&id=" + venueId;

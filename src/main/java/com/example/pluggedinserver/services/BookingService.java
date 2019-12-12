@@ -29,36 +29,8 @@ public class BookingService {
         return repository.findAllBookingsForOwner(oid);
     }
 
-    public List<Booking> createBookingForTour(Integer tid, Booking booking) {
-
-        Tour tour = tourRepository.findTourById(tid);
-        List<Booking> originalBookings = tour.getBookings();
-        originalBookings.add(booking);
-        tour.setBookings(originalBookings);
-        tourRepository.save(tour);
-
-        Tour updatedTour = tourRepository.findTourById(tid);
-        booking.setTour(updatedTour);
-        repository.save(booking);
-        return repository.findAllBookingsForTour(tid);
-    }
-
     public List<Booking> findAllBookingsForTour(Integer tid) {
         return repository.findAllBookingsForTour(tid);
-    }
-
-    public List<Booking> createBookingForVenue(Integer vid, Booking booking) {
-
-        Venue venue = venueRepository.findVenueById(vid);
-        List<Booking> originalBookings = venue.getBookings();
-        originalBookings.add(booking);
-        venue.setBookings(originalBookings);
-        venueRepository.save(venue);
-
-        Venue updatedVenue = venueRepository.findVenueById(vid);
-        booking.setVenue(updatedVenue);
-        repository.save(booking);
-        return repository.findAllBookingsForVenue(vid);
     }
 
     public List<Booking> findAllBookingsForVenue(Integer vid) {

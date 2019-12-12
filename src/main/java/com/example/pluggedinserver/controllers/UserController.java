@@ -115,21 +115,28 @@ public class UserController {
         return service.updateOwnerVenue(ownerId, venueId, venue);
     }
 
-    // need venue info
-    @PostMapping("/api/users/managers/{managerId}/tours/{tourId}/artists/{artistId}/booking")
+    @PostMapping("/api/users/managers/{managerId}/tours/{tourId}/artists/{artistId}/venues/{venueKey}/booking")
     public Manager createBooking
             (@PathVariable("managerId") Integer managerId,
              @PathVariable("tourId") Integer tourId,
              @PathVariable("artistId") Integer artistId,
+             @PathVariable("venueKey") String venueKey,
              @RequestBody Booking booking) {
-        return service.createBooking(managerId, tourId, booking);
+        return service.createBooking(managerId, tourId, artistId, venueKey, booking);
     }
 
     @PostMapping("/api/users/managers/{managerId}/tour")
-    public List<Tour> createManagerTour
+    public Manager createTour
             (@PathVariable("managerId") Integer managerId,
              @RequestBody Tour tour) {
-        return service.createManagerTour(managerId, tour);
+        return service.createTour(managerId, tour);
+    }
+
+    @DeleteMapping("/api/users/managers/{managerId}/tours/{tourId}")
+    public Manager deleteTour
+            (@PathVariable("managerId") Integer managerId,
+             @PathVariable("tourId") Integer tourId) {
+        return service.deleteTour(managerId, tourId);
     }
 
 }

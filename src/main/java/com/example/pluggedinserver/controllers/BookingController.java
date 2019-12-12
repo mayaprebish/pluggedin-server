@@ -13,21 +13,9 @@ public class BookingController {
     @Autowired
     BookingService service;
 
-    @PostMapping("api/tours/{tid}/bookings")
-    public List<Booking> createBookingForTour(@PathVariable("tid") Integer tid,
-                                              @RequestBody Booking booking) {
-        return service.createBookingForTour(tid, booking);
-    }
-
     @GetMapping("api/tours/{tid}/bookings")
     public List<Booking> findAllBookingsForTour(@PathVariable("tid") Integer tid) {
         return service.findAllBookingsForTour(tid);
-    }
-
-    @PostMapping("api/venues/{vid}/bookings")
-    public List<Booking> createBookingForVenue(@PathVariable("vid") Integer vid,
-                                              @RequestBody Booking booking) {
-        return service.createBookingForVenue(vid, booking);
     }
 
     @GetMapping("api/venues/{vid}/bookings")

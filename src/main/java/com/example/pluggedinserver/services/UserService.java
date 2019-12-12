@@ -5,6 +5,8 @@ import com.example.pluggedinserver.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,8 +22,11 @@ public class UserService {
     TourRepository tourRepository;
     @Autowired
     BookingRepository bookingRepository;
+    @Autowired
+    ArtistRepository artistRepository;
 
     TourService tourService;
+    VenueService venueService;
 
     public UserService() {
     }
@@ -45,24 +50,34 @@ public class UserService {
         return venueRepository.findAllByOwner(ownerId);
     }
 
-    public List<Tour> createManagerTour(Integer managerId, Tour tour) {
+    public Manager createTour(Integer managerId, Tour tour) {
         Manager manager = this.getManagerById(managerId);
         Tour t = new Tour(tour.getTitle(), manager);
         tourRepository.save(t);
-        return tourRepository.findAllToursForManager(managerId);
+        return manager;
     }
 
-    public List<Tour> createBooking(Integer managerId, Integer tourId, Booking booking) {
-        Tour tour = tourService.findTourForManager(managerId, tourId);
-        Venue venue = booking.getVenue();
-        Owner owner = null;
-        List<Venue> venues = venueRepository.findAllVenues();
-        if (venues.size() > 0) {
-            owner = venueRepository.findVenueById(venue.getId()).getOwner();
+    public Manager deleteTour(Integer managerId, Integer tourId) {
+        tourRepository.deleteTour(tourId, managerId);
+        return this.getManagerById(managerId);
+    }
+
+    public Manager createBooking(Integer managerId, Integer tourId, Integer artistId, String venueKey,
+                                 Booking booking) {
+        Manager m = managerRepository.findManagerById(managerId);
+        Tour t = tourRepository.findTourById(tourId);
+        Artist a = artistRepository.findArtistById(artistId);
+        Venue v = venueRepository.findVenueByKey(venueKey);
+        Owner o = null;
+        if (v != null) {
+            o = v.getOwner();
         }
-        Booking b = new Booking(booking.getArtist(), booking.getVenue(), tour, owner);
+
+        Date d = booking.getDate();
+        Booking b = new Booking(a, v, t, o, d);
         bookingRepository.save(b);
-        return tourRepository.findAllToursForManager(managerId);
+
+        return m;
     }
 
     public List<Manager> getAllManagers() {
