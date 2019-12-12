@@ -97,14 +97,14 @@ public class UserController {
     @DeleteMapping("/api/users/owners/{ownerId}/venues/{venueId}")
     public List<Venue> deleteVenue
             (@PathVariable("ownerId") Integer ownerId,
-             @PathVariable("venueId") String venueId) {
+             @PathVariable("venueId") Integer venueId) {
         return service.deleteOwnerVenue(ownerId, venueId);
     }
 
     @PutMapping("/api/users/owners/{ownerId}/venues/{venueId}")
     public List<Venue> updateVenue
             (@PathVariable("ownerId") Integer ownerId,
-             @PathVariable("venueId") String venueId,
+             @PathVariable("venueId") Integer venueId,
              @RequestBody Venue venue) {
         return service.updateOwnerVenue(ownerId, venueId, venue);
     }

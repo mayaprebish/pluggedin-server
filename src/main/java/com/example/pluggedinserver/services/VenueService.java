@@ -15,7 +15,7 @@ public class VenueService {
     VenueRepository repository;
     RestTemplate restTemplate = new RestTemplate();
 
-    public Venue getVenueById(String vid) {
+    public Venue getVenueById(Integer vid) {
         return repository.findVenueById(vid);
     }
 

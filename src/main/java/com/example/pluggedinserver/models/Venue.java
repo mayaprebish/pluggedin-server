@@ -11,7 +11,9 @@ import java.util.List;
 @Table(name = "venues")
 public class Venue {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String key;
     private String name;
     private String location;
 
@@ -22,11 +24,11 @@ public class Venue {
     @ManyToMany(mappedBy = "venues")
     private List<Artist> artists;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -70,6 +72,14 @@ public class Venue {
         this.manager = manager;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     @ManyToOne
     @JsonIgnore
     private Owner owner;
@@ -80,8 +90,8 @@ public class Venue {
 
     public Venue(){}
 
-    public Venue(String id, String name, String location, Owner owner) {
-        this.id = id;
+    public Venue(String key, String name, String location, Owner owner) {
+        this.key = key;
         this.name = name;
         this.location = location;
         this.owner = owner;

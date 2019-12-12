@@ -61,7 +61,7 @@ public class BookingService {
         return repository.findAllBookingsForTour(tid);
     }
 
-    public List<Booking> createBookingForVenue(String vid, Booking booking) {
+    public List<Booking> createBookingForVenue(Integer vid, Booking booking) {
 
         Venue venue = venueRepository.findVenueById(vid);
         List<Booking> originalBookings = venue.getBookings();
@@ -75,7 +75,7 @@ public class BookingService {
         return repository.findAllBookingsForVenue(vid);
     }
 
-    public List<Booking> findAllBookingsForVenue(String vid) {
+    public List<Booking> findAllBookingsForVenue(Integer vid) {
         return repository.findAllBookingsForVenue(vid);
     }
 

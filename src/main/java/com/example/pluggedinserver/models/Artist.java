@@ -19,7 +19,6 @@ public class Artist {
     private String location;
     private String genre;
 
-
     @OneToMany(mappedBy = "venue")
     private List<Booking> bookings;
 

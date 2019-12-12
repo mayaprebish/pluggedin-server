@@ -28,17 +28,17 @@ public class UserService {
 
     public Owner createOwnerVenue(Integer ownerId, Venue venue) {
         Owner owner = ownerRepository.findOwnerById(ownerId);
-        Venue v = new Venue(venue.getId(), venue.getName(), venue.getLocation(), owner);
+        Venue v = new Venue(venue.getKey(), venue.getName(), venue.getLocation(), owner);
         venueRepository.save(v);
         return ownerRepository.findOwnerById(ownerId);
     }
 
-    public List<Venue> deleteOwnerVenue(Integer ownerId, String venueId) {
+    public List<Venue> deleteOwnerVenue(Integer ownerId, Integer venueId) {
         venueRepository.deleteVenue(venueId, ownerId);
         return venueRepository.findAllByOwner(ownerId);
     }
 
-    public List<Venue> updateOwnerVenue(Integer ownerId, String venueId, Venue venue) {
+    public List<Venue> updateOwnerVenue(Integer ownerId, Integer venueId, Venue venue) {
         Owner owner = this.getOwnerById(ownerId);
         venueRepository.deleteVenue(venueId, ownerId);
         venueRepository.save(venue);

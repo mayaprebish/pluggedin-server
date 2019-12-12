@@ -18,13 +18,13 @@ public interface VenueRepository extends CrudRepository<Venue, Integer> {
     public List<Venue> findAllVenues();
 
     @Query("select venue from Venue venue where venue.id=:vid")
-    public Venue findVenueById(@Param("vid") String vid);
+    public Venue findVenueById(@Param("vid") Integer vid);
 
     @Query("select venue from Venue venue where venue.id=:vid and venue.owner.id=:oid")
-    public Venue findVenueForOwner(@Param("vid") String vid, @Param("oid") Integer oid);
+    public Venue findVenueForOwner(@Param("vid") Integer vid, @Param("oid") Integer oid);
 
     @Transactional
     @Modifying
     @Query("delete from Venue venue where venue.id=:vid and venue.owner.id=:oid")
-    public void deleteVenue(@Param("vid") String vid, @Param("oid") Integer oid);
+    public void deleteVenue(@Param("vid") Integer vid, @Param("oid") Integer oid);
 }
